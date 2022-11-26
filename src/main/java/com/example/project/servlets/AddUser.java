@@ -1,8 +1,6 @@
 package com.example.project.servlets;
 
-
-import com.example.demo.User;
-import com.example.demo.UserRepo;
+import com.example.project.config.DbHelper;
 import com.example.project.domain.User;
 import com.example.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +44,10 @@ public class AddUser extends HttpServlet {
             r.setUsername(username);
             r.setPassword(passwd);
             r.setEmail(email);
-            userService.addUser(r);
-            //out.print(r.getId());
+
+            DbHelper db = new DbHelper();
+            db.addUser(r);
+            out.print(r.getId());
         } catch (Exception e) {
             out.print("Error: " + e.getMessage());
         }
